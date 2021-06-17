@@ -100,9 +100,9 @@ def read_file(path, mode='r'):
 def run():
     sock = socket.socket()
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    sock.bind(('20.51.241.237', 5000))
+    sock.bind(('', 5000))
     sock.listen(1)
-    print("Server is running on 20.51.241.237:5000")
+    print("Server is running on x:5000")
     while True:
         conn, addr = sock.accept()
         print(f'------ Connected: {addr}')
