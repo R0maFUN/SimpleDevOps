@@ -41,7 +41,7 @@ jobs:
           push: true
           context: .
           file: ./Dockerfile
-          tags: user/app:latest
+          tags: romabalayan/SimpleDevOps:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
