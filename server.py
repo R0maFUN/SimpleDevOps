@@ -1,26 +1,4 @@
-"""
-Маленький самописный веб сервер
-
-Откликается в браузере через 'http://localhost:8080'
-
-Некоторые ресурсы:
-/ или /index.html - страничка по умолчанию
-
-/secret.html - страничка, открывающаяся только при наличии cookie is_authorized
-/login.html - страничка, имитирующая процедуру логина. Предлагает ввести
-    логин и пароль, отправляет форму через POST на сервер, в ответ
-    получает cookie is_authorized
-
-Сервер пытается читать файлы относительно каталога запуска. Если сервер падает
-с исключением "No such file or directory", скорее всего каталог запуска не совпадает
-с каталогом, в котором лежат *.html файлы.
-
-Внимание! Написано в демонстрационных целях. Запуск такого "сервера" в интернете
-ни к чему хорошему не приведет)
-"""
-
 import socket
-
 
 OK_RESPONSE = """HTTP/1.1 200 OK
 Content-Type: text/html
@@ -83,21 +61,6 @@ def parse_request(raw):
 
 def prepare_response(request):
     return r_ok('OK')
-#    path = request['url']
-#   if path in ('', 'index.html'):
-#        return v_index(request)
-#    elif path == 'secret.html':
-#        return v_secret(request)
-#    elif path == 'login.html':
-#        return v_login(request)
-#    elif path == 'favicon.ico':
-#        return v_icon(request)
-#    else:
-#        try:
-#            # сервер может отдать любой файл, до которого сможет дотянуться
-#            return r_ok(read_file(path))
-#        except:
-#            return r_404('not found')
 
 
 def v_index(request):
@@ -109,7 +72,7 @@ def v_secret(request):
         return r_ok(read_file('secret.html'))
     else:
         return r_401('Login first!')
-
+    
 
 def v_login(request):
     if 'authorized=1' in request['head']:
@@ -119,7 +82,7 @@ def v_login(request):
     elif request['method'] == 'POST':
         # здесь из body надо извлечь логин и пароль и проверить их
         return r_auth()
-
+    
     return r_401('Unknown method')
 
 
@@ -131,14 +94,14 @@ def v_icon(request):
 def read_file(path, mode='r'):
     with open(path, mode) as f:
         return f.read()
-
-
+    
+    
 def run():
     sock = socket.socket()
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('127.0.0.1', 8080))
     sock.listen(1)
-
+    
     while True:
         conn, addr = sock.accept()
         print(f'------ Connected: {addr}')
@@ -149,7 +112,8 @@ def run():
         conn.send(response)
         conn.close()
         print(f'------ Bye \n\n')
-
-
+        
+        
 if __name__ == '__main__':
     run()
+    
