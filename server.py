@@ -102,7 +102,7 @@ def run():
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(('127.0.0.1', 8080))
     sock.listen(1)
-    
+    print("Server is running on 127.0.0.1:8080")
     while True:
         conn, addr = sock.accept()
         print(f'------ Connected: {addr}')
