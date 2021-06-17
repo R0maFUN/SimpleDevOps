@@ -64,5 +64,7 @@ jobs:
     needs: StartDocker
     steps:
       - name: Test connection
-        run: curl 20.51.241.237:5000
+        run: | 
+          sleep 30
+          curl 20.51.241.237:5000
 
