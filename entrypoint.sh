@@ -2,4 +2,4 @@
 
 yes | apt update
 yes | apt install python3.8
-python server.py
+python3.8 server.py
