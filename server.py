@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import socket
 
 OK_RESPONSE = """HTTP/1.1 200 OK
@@ -80,7 +82,6 @@ def v_login(request):
     if request['method'] == 'GET':
         return r_ok(read_file('login.html'))
     elif request['method'] == 'POST':
-        # здесь из body надо извлечь логин и пароль и проверить их
         return r_auth()
     
     return r_401('Unknown method')
