@@ -4,3 +4,4 @@ description: 'Runs server inside the docker'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+
