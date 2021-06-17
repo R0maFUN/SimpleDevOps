@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Run docker
         run: |
-          sudo docker container kill Server
+          sudo docker rm Server
           sudo docker run --name Server -p 5000:5000 -d romabalayan/simpledevops:latest
   TestConnection:
     runs-on: ubuntu-latest
