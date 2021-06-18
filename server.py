@@ -62,7 +62,7 @@ def parse_request(raw):
 
 
 def prepare_response(request):
-    return r_ok('OK')
+    return r_ok('OK123')
 
 
 def v_index(request):
