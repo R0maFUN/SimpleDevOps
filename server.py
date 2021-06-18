@@ -82,7 +82,7 @@ def parse_request(raw):
 
 
 def prepare_response(request):
-    return r_ok('OK')
+    return r_ok('OK321')
 #    path = request['url']
 #   if path in ('', 'index.html'):
 #        return v_index(request)
